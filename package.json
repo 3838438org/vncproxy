@@ -9,6 +9,7 @@
     "include-all": "^1.0.0",
     "needle": "^2.0.0",
     "nocache": "^2.0.0",
+    "oauth2_client": "0.0.3",
     "rc": "1.0.1",
     "sails": "~0.12.13"
   },
