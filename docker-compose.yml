@@ -1,0 +1,8 @@
+version: '2'
+services:
+  vncproxy:
+    image: twhtanghk/vncproxy
+    ports:
+      - 1337
+    env_file: 
+      - ../.env

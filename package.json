@@ -1,0 +1,26 @@
+{
+  "name": "vncproxy",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "keywords": [],
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "include-all": "^1.0.0",
+    "needle": "^2.0.0",
+    "nocache": "^2.0.0",
+    "rc": "1.0.1",
+    "sails": "~0.12.13"
+  },
+  "scripts": {
+    "test": "mocha test/bootstrap.test.coffee test/unit/**/*.coffee",
+    "start": "node app.js --prod"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anonymous node/sails user/vncproxy.git"
+  },
+  "author": "Tommy Tang <twhtanghk@gmail.com>",
+  "license": "MIT"
+}
