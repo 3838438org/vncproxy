@@ -10,6 +10,8 @@
     "needle": "^2.0.0",
     "nocache": "^2.0.0",
     "oauth2_client": "0.0.3",
+    "passport": "^0.4.0",
+    "passport-http-bearer": "^1.0.1",
     "rc": "1.0.1",
     "sails": "~0.12.13"
   },
