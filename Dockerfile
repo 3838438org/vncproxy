@@ -12,6 +12,8 @@ RUN apt-get update \
 
 WORKDIR $APP
 
+RUN npm install
+
 EXPOSE 1337
 
 CMD npm start

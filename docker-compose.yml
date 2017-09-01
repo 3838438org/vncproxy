@@ -6,3 +6,4 @@ services:
       - 1337
     env_file: 
       - ../.env
+      - ./.env
