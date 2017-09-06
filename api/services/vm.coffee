@@ -2,6 +2,7 @@ assert = require 'assert'
 oauth2 = require 'oauth2_client'
 Promise = require 'bluebird'
 needle = Promise.promisifyAll require 'needle'
+{async, await} = require 'asyncawait'
 
 [
   'TOKENURL'
@@ -22,20 +23,28 @@ client =
   secret: process.env.CLIENT_SECRET
 scope = process.env.SCOPE.split ' '
 
-token = ->
-  while true
-    yield oauth2
-      .token process.env.TOKENURL, client, user, scope
-      .catch (err) ->
-        sails.log.error err
-
 module.exports =
-  find: ->
-    token()
+  find: (skip = 0) ->
+    oauth2
+      .token process.env.TOKENURL, client, user, scope
       .then (token) ->
         needle
-          .getAsync process.env.VMURL,
+          .requestAsync 'get', process.env.VMURL, skip: skip,
             headers:
               Authorization: "Bearer #{token}"
+            rejectUnauthorized: false
       .then (res) ->
         res.body
+
+  list: async.iterable (yield_) ->
+    skip = 0
+    done = false
+    while not done
+      p = @find skip
+        .then (res) ->
+          skip = skip + res.results.length
+          done = skip >= res.count
+
+          res.results
+      for i in await p
+        yield_ i
