@@ -7,7 +7,10 @@
   "dependencies": {
     "asyncawait": "^1.0.6",
     "bluebird": "^3.5.0",
+    "camelcase": "^4.1.0",
     "coffee-script": "^1.12.7",
+    "dockerode": "^2.5.0",
+    "email-addresses": "^3.0.1",
     "include-all": "^1.0.0",
     "needle": "^2.0.0",
     "nocache": "^2.0.0",

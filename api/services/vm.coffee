@@ -34,6 +34,8 @@ module.exports =
               Authorization: "Bearer #{token}"
             rejectUnauthorized: false
       .then (res) ->
+        if res.statusCode != 200
+          throw new Error "#{res.statusCode}: #{res.statusMessage}"
         res.body
 
   list: async.iterable (yield_) ->
