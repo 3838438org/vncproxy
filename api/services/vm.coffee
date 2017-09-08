@@ -4,32 +4,15 @@ Promise = require 'bluebird'
 needle = Promise.promisifyAll require 'needle'
 {async, await} = require 'asyncawait'
 
-[
-  'TOKENURL'
-  'CLIENT_ID'
-  'CLIENT_SECRET'
-  'USER_ID'
-  'USER_SECRET'
-  'SCOPE'
-  'VMURL'
-].map (name) ->
-  assert name of process.env, "process.env.#{name} not yet defined"
-
-user =
-  id: process.env.USER_ID
-  secret: process.env.USER_SECRET
-client =
-  id: process.env.CLIENT_ID
-  secret: process.env.CLIENT_SECRET
-scope = process.env.SCOPE.split ' '
 
 module.exports =
   find: (skip = 0) ->
+    opts = sails.config.oauth2
     oauth2
-      .token process.env.TOKENURL, client, user, scope
+      .token opts.tokenUrl, opts.client, opts.user, opts.scope
       .then (token) ->
         needle
-          .requestAsync 'get', process.env.VMURL, skip: skip,
+          .requestAsync 'get', sails.config.vm.url, skip: skip,
             headers:
               Authorization: "Bearer #{token}"
             rejectUnauthorized: false

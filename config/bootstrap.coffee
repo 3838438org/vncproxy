@@ -2,6 +2,7 @@ _ = require 'lodash'
 {parseOneAddress} = require 'email-addresses'
 Promise = require 'bluebird'
 camelCase = require 'camelcase'
+Docker = require 'dockerode'
 
 username = (email) ->
   parseOneAddress(email)?.local
@@ -39,6 +40,7 @@ vnc =
 
 module.exports =
   bootstrap: (cb) ->
+    sails.config.docker.server = new Docker sails.config.docker.opts
     vnc.start()
     sails.config.beforeShutdown = vnc.stop
     cb()

@@ -1,15 +1,12 @@
-[ 'VERIFYURL', 'SCOPE' ].map (name) ->
-  if not (name of process.env)
-    throw new Error "process.env.#{name} not yet defined"
-
 _ = require 'lodash'
 passport = require 'passport'
 bearer = require 'passport-http-bearer'
 oauth2 = require 'oauth2_client'
 
 passport.use 'bearer', new bearer.Strategy {} , (token, done) ->
+  opts = sails.config.oauth2
   oauth2
-    .verify process.env.VERIFYURL, process.env.SCOPE.split(' '), token
+    .verify opts.url.verify, opts.scope, token
     .then (info) ->
       info.user
     .then (user) ->
