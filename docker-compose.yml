@@ -6,4 +6,5 @@ services:
       - 1337
     env_file: 
       - ../.env
-      - ./.env
+    volumes:
+      - ./production.coffee:/usr/src/app/config/env/production.coffee
