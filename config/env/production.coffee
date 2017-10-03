@@ -17,5 +17,4 @@ module.exports =
   proxy:
     url: 'https://abc.com/proxy/upstream'
   docker:
-    host: "192.168.122.2"
-    port: 2375
+    host: 'http://192.168.121.1:2375'

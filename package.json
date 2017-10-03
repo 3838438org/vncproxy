@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "activerecord-model": "0.0.4",
     "asyncawait": "^1.0.6",
     "bluebird": "^3.5.0",
     "camelcase": "^4.1.0",

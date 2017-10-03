@@ -1,3 +1,3 @@
 module.exports =
   docker:
-    container: []
+    containers: {}
