@@ -16,4 +16,4 @@ RUN npm install
 
 EXPOSE 1337
 
-CMD node app.js --prod
+ENTRYPOINT ["node", "app.js", "--prod"]
