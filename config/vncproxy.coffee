@@ -34,9 +34,9 @@ module.exports =
         sails.config.proxy.upstream[vm.name] = p
 
     stop: -> co ->
-      for c in sails.config.docker.containers
+      for nmae, c of sails.config.docker.containers
         yield c.stop()
         yield c.destroy()
 
-      for p in sails.config.proxy.upstream
-        yield p.destory()
+      for name, p of sails.config.proxy.upstream
+        yield p.destroy()
