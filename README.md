@@ -8,7 +8,8 @@ Create vnc console for all virtual machines defined in vm service
 - [nvonc]: list of novnc service to connect the defined virtual machines
 - proxy: service with http reverse proxy settings to connect the above novnc services
 
-# configuration [production.coffee](https://github.com/twhtanghk/vncproxy/blob/master/config/env/production.coffee)
+# configuration 
+see [production.coffee](https://github.com/twhtanghk/vncproxy/blob/master/config/env/production.coffee)
 
 # start
 docker-compose -f docker-compose.yml up -d

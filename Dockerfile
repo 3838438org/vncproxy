@@ -16,4 +16,4 @@ RUN npm install
 
 EXPOSE 1337
 
-CMD npm start
+CMD node app.js --prod
