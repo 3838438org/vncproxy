@@ -1,3 +1,6 @@
+_ = require 'lodash'
+{docker} = require 'activerecord-model'
+
 module.exports =
   docker:
-    containers: {}
+    _.extend containers: {}, docker

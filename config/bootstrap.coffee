@@ -3,7 +3,6 @@ co = require 'co'
 
 module.exports =
   bootstrap: (cb) ->
-    require('activerecord-model')()
     sails.config.vncproxy.start()
     sails.config.beforeShutdown = (cb) -> co ->
       sails.config.vncproxy.stop()

@@ -1,3 +1,6 @@
+_ = require 'lodash'
+{proxy} = require 'activerecord-model'
+
 module.exports =
   proxy:
-    upstream: {}
+    _.extend upstream: {}, proxy
