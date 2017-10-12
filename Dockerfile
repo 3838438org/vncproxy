@@ -6,7 +6,7 @@ ADD . $APP
 
 WORKDIR $APP
 
-RUN npm install
+RUN yarn install
 
 EXPOSE 1337
 
