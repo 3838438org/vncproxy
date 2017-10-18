@@ -1,2 +1,1 @@
-module.exports =
-  vm: require('activerecord-model').vm
+module.exports = require 'vagrantvm/config/vm.litcoffee'

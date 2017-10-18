@@ -18,7 +18,8 @@
     "passport-http-bearer": "^1.0.1",
     "rc": "1.0.1",
     "sails": "~0.12.13",
-    "sails_policy": "^0.0.2"
+    "sails_policy": "^0.0.2",
+    "vagrantvm": "^0.0.3"
   },
   "scripts": {
     "test": "mocha test/bootstrap.test.coffee test/unit/**/*.coffee",

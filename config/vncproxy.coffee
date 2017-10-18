@@ -25,7 +25,7 @@ module.exports =
   vncproxy:
     start: -> co ->
       Vm = sails.config.vm.model()
-      vmlist = yield Vm.fetchAll()
+      vmlist = yield Vm.fetchFull()
       for vm from vmlist()
         c = sails.config.docker.containers[vm.name] = yield container vm
         sails.config.proxy.upstream[vm.name] = yield proxy vm, c
@@ -41,7 +41,7 @@ module.exports =
     reload: -> co ->
       sails.log.info 'reload config'
       Vm = sails.config.vm.model()
-      vmlist = yield Vm.fetchAll()
+      vmlist = yield Vm.fetchFull()
       activeVm = []
 
       # add container and proxy for newly created vm
