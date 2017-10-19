@@ -1,8 +1,10 @@
 _ = require 'lodash'
 co = require 'co'
+url = require 'url'
 
 # return created container for input vm
 container = (vm) ->
+  sails.config.vm.host = url.parse(sails.config.vm.url).hostname
   Container = sails.config.docker.model.container()
   c = new Container
     Image: 'twhtanghk/novnc'
@@ -27,15 +29,18 @@ module.exports =
       Vm = sails.config.vm.model()
       vmlist = yield Vm.fetchFull()
       for vm from vmlist()
+        sails.log.info "create #{vm.name}"
         c = sails.config.docker.containers[vm.name] = yield container vm
         sails.config.proxy.upstream[vm.name] = yield proxy vm, c
 
     stop: -> co ->
-      for nmae, c of sails.config.docker.containers
+      for name, c of sails.config.docker.containers
+        sails.log.info "destroy container #{name}"
         yield c.stop()
         yield c.destroy()
 
       for name, p of sails.config.proxy.upstream
+        sails.log.info "destroy proxy #{name}"
         yield p.destroy()
 
     reload: -> co ->
