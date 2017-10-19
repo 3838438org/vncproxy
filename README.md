@@ -1,12 +1,12 @@
 # vncproxy
-Create vnc console for all virtual machines defined in vm service
+Create/destroy vnc console for all virtual machines defined in vm service
 
 # Input Service
 - vm: list of virtual machines
 
 # Output Services
-- [nvonc]: list of novnc service to connect the defined virtual machines
-- proxy: service with http reverse proxy settings to connect the above novnc services
+- sails.config.docker.containers: map with (name, container) pair of vm name and novnc container to connect the defined virtual machines
+- sails.config.proxy.upstream: map with (name, proxy) pair of vm name and http reverse proxy settings to connect the above novnc services
 
 # configuration 
 see [production.coffee](https://github.com/twhtanghk/vncproxy/blob/master/config/env/production.coffee)
