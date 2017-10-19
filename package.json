@@ -1,11 +1,9 @@
 {
   "name": "vncproxy",
-  "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.0.1",
+  "description": "Create/destroy vnc console for all vm defined in vm service",
   "keywords": [],
   "dependencies": {
-    "activerecord-model": "0.0.6",
     "asyncawait": "^1.0.6",
     "bluebird": "^3.5.0",
     "coffee-script": "^1.12.7",
@@ -18,7 +16,7 @@
     "passport-http-bearer": "^1.0.1",
     "rc": "1.0.1",
     "sails": "~0.12.13",
-    "sails_policy": "^0.0.2",
+    "sails_policy": "^0.0.3",
     "vagrantvm": "^0.0.3"
   },
   "scripts": {
