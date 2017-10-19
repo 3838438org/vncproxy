@@ -9,10 +9,10 @@ Create/destroy vnc console for all virtual machines defined in vm service
 - sails.config.proxy.upstream: map with (name, proxy) pair of vm name and http reverse proxy settings to connect the above novnc services
 
 # configuration 
-see [production.coffee](https://github.com/twhtanghk/vncproxy/blob/master/config/env/production.coffee)
+see [production.litcoffee](https://github.com/twhtanghk/vncproxy/blob/master/config/env/production.litcoffee)
 
 # start
-docker-compose -f docker-compose.yml up -d
+docker-compose -v ./production.litcoffee:/usr/src/app/config/env/production.litcoffee -f docker-compose.yml up -d
 ```
 Once service started
 - read list of virtual machines defined in vm service
