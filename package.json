@@ -1,7 +1,7 @@
 {
   "name": "vncproxy",
-  "version": "0.0.1",
-  "description": "Create/destroy vnc console for all vm defined in vm service",
+  "version": "0.0.2",
+  "description": "Create/destroy vnc console for all vm defined in vm services",
   "keywords": [],
   "dependencies": {
     "asyncawait": "^1.0.6",
@@ -17,7 +17,7 @@
     "rc": "1.0.1",
     "sails": "~0.12.13",
     "sails_policy": "^0.0.3",
-    "vagrantvm": "^0.0.3"
+    "vagrantvm": "^0.0.5"
   },
   "scripts": {
     "test": "mocha test/bootstrap.test.coffee test/unit/**/*.coffee",

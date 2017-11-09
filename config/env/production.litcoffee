@@ -32,10 +32,12 @@ administrator to connect proxy service for creating/destroying http reverse prox
           'User'
         ]
 
-url for vm api and host to connect defined vm
+paris of server and url for vm api
 
       vm:
-        url: 'http://abc.com:1337/api/vm'
+        url: 
+          host1: 'http://abc.com:1337/api/vm'
+          host2: 'http://def.com:1337/api/vm'
 
 url for proxy api
 

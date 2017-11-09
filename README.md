@@ -1,8 +1,8 @@
 # vncproxy
 Create/destroy vnc console for all virtual machines defined in vm service
 
-# Input Service
-- vm: list of virtual machines
+# Input Services
+- sails.config.vm.url: map with (server, url) to crud virtual machines
 
 # Output Services
 - sails.config.docker.containers: map with (name, container) pair of vm name and novnc container to connect the defined virtual machines

@@ -1,15 +1,16 @@
 _ = require 'lodash'
 co = require 'co'
 url = require 'url'
+Promise = require 'bluebird'
 
 # return created container for input vm
-container = (vm) ->
-  sails.config.vm.host = url.parse(sails.config.vm.url).hostname
+container = (vm, baseUrl) ->
+  host = url.parse(baseUrl).hostname
   Container = sails.config.docker.model.container()
   c = new Container
     Image: 'twhtanghk/novnc'
     Env: [ "SERVICE_NAME=#{vm.name}" ]
-    Cmd: ['/bin/bash', '-c', "/usr/src/app/utils/launch.sh --vnc #{sails.config.vm.host}:#{vm.port.vnc}"]
+    Cmd: ['/bin/bash', '-c', "/usr/src/app/utils/launch.sh --vnc #{host}:#{vm.port.vnc}"]
   yield c.save()
   yield c.start()
   yield c.fetch()
@@ -25,16 +26,18 @@ proxy = (vm, c) ->
   
 module.exports =
   vncproxy:
-    start: -> co ->
-      Vm = sails.config.vm.model()
-      vmlist = yield Vm.fetchFull()
-      for vm from vmlist()
-        try
-          sails.log.info "create #{vm.name}"
-          c = sails.config.docker.containers[vm.name] = yield container vm
-          sails.config.proxy.upstream[vm.name] = yield proxy vm, c
-        catch err
-          sails.log.error err
+    start: ->
+      Promise.all _.map sails.config.vm.url, (url, server) -> co ->
+        Vm = sails.config.vm.model url
+        vmlist = yield Vm.fetchFull()
+        for vm from vmlist()
+          try
+            name = "#{server}_#{vm.name}"
+            sails.log.info "create #{name}"
+            c = sails.config.docker.containers[name] = yield container vm, url
+            sails.config.proxy.upstream[name] = yield proxy vm, c
+          catch err
+            sails.log.error err
 
     stop: -> co ->
       for name, c of sails.config.docker.containers
